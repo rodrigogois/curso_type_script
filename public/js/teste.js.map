@@ -1,0 +1,1 @@
+{"version":3,"file":"teste.js","sourceRoot":"","sources":["../../src/teste.ts"],"names":[],"mappings":";;;IAGA,IAAI,mBAAQ,EAAE,CAAC,KAAK,EAAE,CAAA","sourcesContent":["import \"module1\";\r\nimport PostHttp from 'http/post-http';\r\n\r\nnew PostHttp().query()"]}
