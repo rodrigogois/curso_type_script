@@ -7,8 +7,11 @@ export default class PostHttp {
         this.http = new Http();
     }
 
-    query(callable) {
+    query() {
         this.http.get('https://jsonplaceholder.typicode.com/posts')
+            .then(function (responseText) {
+                console.log(JSON.parse(responseText));
+            })
     }
 
     save() {

@@ -4,6 +4,6 @@ define(["require", "exports", "http/post-http", "module1"], function (require, e
     function getPosts(responseText) {
         console.log(responseText);
     }
-    new post_http_1.default().query(getPosts);
+    new post_http_1.default().query();
 });
 //# sourceMappingURL=teste.js.map
