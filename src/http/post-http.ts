@@ -1,4 +1,5 @@
 import Http from './http';
+import Response from './response';
 
 export default class PostHttp {
 
@@ -8,9 +9,10 @@ export default class PostHttp {
     }
 
     query() {
-        this.http.get('https://jsonplaceholder.typicode.com/posts')
-            .then(function (responseText) {
-                console.log(JSON.parse(responseText));
+        this.http.get('http://gateway.marvel.com:80/v1/public/characters')
+            .then(function (response: Response) {
+                console.log(JSON.parse(response.body));
+                console.log(response.status);
             })
     }
 

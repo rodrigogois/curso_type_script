@@ -1,3 +1,5 @@
+import Response from './response';
+
 enum HttpVerbs {
     GET = 'GET',
     POST = 'POST'
@@ -5,7 +7,7 @@ enum HttpVerbs {
 
 export default class Http {
 
-    get(url: string):Promise<any> {
+    get(url: string):Promise<Response> {
         return new Promise((resolve, reject) => {
             let xhttp = this.createXhttp(HttpVerbs.GET, url);
             this.configureCallback(xhttp, resolve, reject);
@@ -21,9 +23,13 @@ export default class Http {
 
     private configureCallback(xhttp, resolve, reject) {
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                resolve(this.responseText);
+            if(this.readyState == 4){
+                const response = new Response(this.responseText, this.status);
+                if(this.status == 200) {
+                    resolve(response);
+                }
             }
+            
         };
     }
 
