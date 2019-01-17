@@ -10,18 +10,24 @@ define(["require", "exports"], function (require, exports) {
         function Http() {
         }
         Http.prototype.get = function (url) {
-            var xhttp = this.createXhttp(HttpVerbs.GET, url);
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    callable(this.responseText);
-                }
-            };
-            xhttp.send();
+            var _this = this;
+            var promise = new Promise(function (resolve, reject) {
+                var xhttp = _this.createXhttp(HttpVerbs.GET, url);
+                _this.configureCallback(xhttp, resolve, reject);
+                xhttp.send();
+            });
         };
         Http.prototype.createXhttp = function (verb, url) {
             var xhttp = new XMLHttpRequest();
             xhttp.open(verb, url, true);
             return xhttp;
+        };
+        Http.prototype.configureCallback = function (xhttp, resolve, reject) {
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    resolve(this.responseText);
+                }
+            };
         };
         Http.prototype.post = function () {
         };
