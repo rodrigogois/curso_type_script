@@ -1,14 +1,19 @@
+import Http from './http';
+import Response from './response';
+
 export default class PostHttp {
 
+    private http: Http;
+    constructor() {
+        this.http = new Http();
+    }
+
     query() {
-        let xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'https://jsonplaceholder.typicode.com/posts');
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-            }
-        };
-        xhttp.send();
+        this.http.get('http://gateway.marvel.com:80/v1/public/characters')
+            .then(function (response: Response) {
+                console.log(JSON.parse(response.body));
+                console.log(response.status);
+            })
     }
 
     save() {

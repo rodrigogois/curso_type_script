@@ -1,11 +1,14 @@
 {
     "compilerOptions": {
+        "lib": ["es5", "es2015", "dom", "scripthost"],
         "target": "es5",
         "module": "amd",
         "rootDir": "src",
         "outDir": "public/js",
         "sourceMap": true,
-        "inlineSources": true
+        "inlineSources": true,
+        "typeRoots": [],
+        "types": []
     },
     "file":[
         "src/teste.js"

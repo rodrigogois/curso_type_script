@@ -1,4 +1,7 @@
 import "module1";
 import PostHttp from 'http/post-http';
 
-new PostHttp().query()
+function getPosts(responseText){
+console.log(responseText);
+}
+new PostHttp().query();

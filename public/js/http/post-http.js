@@ -1,18 +1,16 @@
-define(["require", "exports"], function (require, exports) {
+define(["require", "exports", "./http"], function (require, exports, http_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var PostHttp = /** @class */ (function () {
         function PostHttp() {
+            this.http = new http_1.default();
         }
         PostHttp.prototype.query = function () {
-            var xhttp = new XMLHttpRequest();
-            xhttp.open('GET', 'https://jsonplaceholder.typicode.com/posts');
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
-                }
-            };
-            xhttp.send();
+            this.http.get('http://gateway.marvel.com:80/v1/public/characters')
+                .then(function (response) {
+                console.log(JSON.parse(response.body));
+                console.log(response.status);
+            });
         };
         PostHttp.prototype.save = function () {
         };
