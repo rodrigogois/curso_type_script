@@ -6,10 +6,10 @@ define(["require", "exports", "./http"], function (require, exports, http_1) {
             this.http = new http_1.default();
         }
         PostHttp.prototype.query = function () {
-            this.http.get('http://gateway.marvel.com:80/v1/public/characters')
+            return this.http.get('https://jsonplaceholder.typicode.com/posts')
                 .then(function (response) {
-                console.log(JSON.parse(response.body));
-                console.log(response.status);
+                console.table(JSON.parse(response.body));
+                return JSON.parse(response.body);
             });
         };
         PostHttp.prototype.save = function () {
