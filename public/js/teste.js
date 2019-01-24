@@ -2,7 +2,7 @@ define(["require", "exports", "http/post-http", "module1"], function (require, e
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function getPosts(responseText) {
-        console.log(responseText);
+        console.table(responseText);
     }
     new post_http_1.default().query();
 });

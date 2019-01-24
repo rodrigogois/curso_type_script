@@ -8,11 +8,11 @@ export default class PostHttp {
         this.http = new Http();
     }
 
-    query() {
-        this.http.get('http://gateway.marvel.com:80/v1/public/characters')
+    query():Promise<Array<any>> {
+        return this.http.get('https://jsonplaceholder.typicode.com/posts')
             .then(function (response: Response) {
-                console.log(JSON.parse(response.body));
-                console.log(response.status);
+                console.table(JSON.parse(response.body));
+                return JSON.parse(response.body);
             })
     }
 

@@ -11,6 +11,7 @@
         "types": []
     },
     "file":[
-        "src/teste.js"
+        "src/teste.ts",
+        "src/page/post-list-page.ts"
     ]
 }

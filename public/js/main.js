@@ -2,9 +2,9 @@ requirejs.config({
     baseUrl:"/js",
     paths:{
         "teste":"teste",
-        "module1":"module1"
+        "page/post-list-page":"page/post-list-page"
     }
 })
 
-requirejs(['teste'],function(){
+requirejs(['page/post-list-page'],function(){
 })
