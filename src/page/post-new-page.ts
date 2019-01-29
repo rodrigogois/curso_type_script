@@ -7,6 +7,8 @@ class PostNewPage implements Page {
     }
 
     init(): void {
+        this.postHttp.save({title:'teste', body:'conteudo'})
+        .then((obj)=>console.table(obj))
         document.querySelector('#my-form').addEventListener('submit', (event: Event) => {
             event.preventDefault();
             this.submit();
@@ -23,5 +25,4 @@ class PostNewPage implements Page {
     }
 }
 
-const postHttp = new PostHttp();
-
+new PostNewPage(new PostHttp());

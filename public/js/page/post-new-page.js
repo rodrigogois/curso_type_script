@@ -8,6 +8,8 @@ define(["require", "exports", "../http/post-http"], function (require, exports, 
         }
         PostNewPage.prototype.init = function () {
             var _this = this;
+            this.postHttp.save({ title: 'teste', body: 'conteudo' })
+                .then(function (obj) { return console.table(obj); });
             document.querySelector('#my-form').addEventListener('submit', function (event) {
                 event.preventDefault();
                 _this.submit();
@@ -21,6 +23,6 @@ define(["require", "exports", "../http/post-http"], function (require, exports, 
         };
         return PostNewPage;
     }());
-    var postHttp = new post_http_1.default();
+    new PostNewPage(new post_http_1.default());
 });
 //# sourceMappingURL=post-new-page.js.map

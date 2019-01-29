@@ -7,11 +7,19 @@ enum HttpVerbs {
 
 export default class Http {
 
-    get(url: string):Promise<Response> {
+    get(url: string): Promise<Response> {
         return new Promise((resolve, reject) => {
             let xhttp = this.createXhttp(HttpVerbs.GET, url);
             this.configureCallback(xhttp, resolve, reject);
             xhttp.send();
+        });
+    }
+
+    post(url: string, data: object): Promise<Response> {
+        return new Promise((resolve, reject) => {
+            let xhttp = this.createXhttp(HttpVerbs.POST, url);
+            this.configureCallback(xhttp, resolve, reject);
+            xhttp.send(JSON.stringify(data));
         });
     }
 
@@ -23,17 +31,13 @@ export default class Http {
 
     private configureCallback(xhttp, resolve, reject) {
         xhttp.onreadystatechange = function () {
-            if(this.readyState == 4){
+            if (this.readyState == 4) {
                 const response = new Response(this.responseText, this.status);
-                if(this.status == 200) {
+                if (this.status.toString().startsWith('20')) {
                     resolve(response);
                 }
             }
-            
+
         };
-    }
-
-    post() {
-
     }
 }
