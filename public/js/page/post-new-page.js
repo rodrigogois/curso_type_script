@@ -1,4 +1,4 @@
-define(["require", "exports", "../http/post-http"], function (require, exports, post_http_1) {
+define(["require", "exports", "../http/post-http", "../components/form"], function (require, exports, post_http_1, form_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var PostNewPage = /** @class */ (function () {
@@ -8,8 +8,6 @@ define(["require", "exports", "../http/post-http"], function (require, exports, 
         }
         PostNewPage.prototype.init = function () {
             var _this = this;
-            this.postHttp.save({ title: 'teste', body: 'conteudo' })
-                .then(function (obj) { return console.table(obj); });
             document.querySelector('#my-form').addEventListener('submit', function (event) {
                 event.preventDefault();
                 _this.submit();
@@ -17,6 +15,15 @@ define(["require", "exports", "../http/post-http"], function (require, exports, 
             });
         };
         PostNewPage.prototype.submit = function () {
+            var _this = this;
+            this.postHttp.save({
+                title: form_1.default.getValueFromField('#title'),
+                body: form_1.default.getValueFromField('#body')
+            })
+                .then(function (obj) { return _this.goToListPost(); });
+        };
+        PostNewPage.prototype.goToListPost = function () {
+            window.location.href = '/post/post-list.html';
         };
         PostNewPage.prototype.isvalid = function () {
             return true;

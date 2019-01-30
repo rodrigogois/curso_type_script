@@ -1,5 +1,6 @@
 import Page from './page';
 import PostHttp from '../http/post-http';
+import Form from '../components/form';
 
 class PostNewPage implements Page {
     constructor(private postHttp: PostHttp) {
@@ -7,8 +8,6 @@ class PostNewPage implements Page {
     }
 
     init(): void {
-        this.postHttp.save({title:'teste', body:'conteudo'})
-        .then((obj)=>console.table(obj))
         document.querySelector('#my-form').addEventListener('submit', (event: Event) => {
             event.preventDefault();
             this.submit();
@@ -17,7 +16,16 @@ class PostNewPage implements Page {
     }
 
     submit() {
+        this.postHttp.save(
+            {
+                title: Form.getValueFromField('#title'),
+                body: Form.getValueFromField('#body')
+            })
+            .then((obj) => this.goToListPost())
+    }
 
+    goToListPost(): void {
+        window.location.href = '/post/post-list.html';
     }
 
     isvalid(): boolean {
