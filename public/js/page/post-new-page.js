@@ -1,4 +1,4 @@
-define(["require", "exports", "../http/post-http"], function (require, exports, post_http_1) {
+define(["require", "exports", "../components/form", "../components/validators/validator-manager", "../components/validators/validators", "../http/post-http"], function (require, exports, form_1, validator_manager_1, validators_1, post_http_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var PostNewPage = /** @class */ (function () {
@@ -8,18 +8,45 @@ define(["require", "exports", "../http/post-http"], function (require, exports, 
         }
         PostNewPage.prototype.init = function () {
             var _this = this;
-            this.postHttp.save({ title: 'teste', body: 'conteudo' })
-                .then(function (obj) { return console.table(obj); });
-            document.querySelector('#my-form').addEventListener('submit', function (event) {
+            document
+                .querySelector("#my-form")
+                .addEventListener("submit", function (event) {
                 event.preventDefault();
                 _this.submit();
                 return false;
             });
         };
         PostNewPage.prototype.submit = function () {
+            var _this = this;
+            if (this.isvalid()) {
+                return;
+            }
+            this.postHttp
+                .save({
+                body: form_1.default.getValueFromField("#body"),
+                title: form_1.default.getValueFromField("#title"),
+            })
+                .then(function (obj) { return _this.goToListPost(); });
+        };
+        PostNewPage.prototype.goToListPost = function () {
+            window.location.href = "/post/post-list.html";
         };
         PostNewPage.prototype.isvalid = function () {
-            return true;
+            var validator = new validator_manager_1.default([
+                {
+                    selectorField: "#title",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    rules: [validators_1.default.required],
+                    messageInvalid: "Titulo invalido",
+                },
+                {
+                    selectorField: "#body",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    rules: [validators_1.default.required],
+                    messageInvalid: "Conteudo invalido",
+                }
+            ]);
+            return validator.isValid();
         };
         return PostNewPage;
     }());

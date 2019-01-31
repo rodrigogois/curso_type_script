@@ -32,9 +32,9 @@ define(["require", "exports", "./response"], function (require, exports, respons
         };
         Http.prototype.configureCallback = function (xhttp, resolve, reject) {
             xhttp.onreadystatechange = function () {
-                if (this.readyState == 4) {
+                if (this.readyState === 4) {
                     var response = new response_1.default(this.responseText, this.status);
-                    if (this.status.toString().startsWith('20')) {
+                    if (this.status.toString().startsWith("20")) {
                         resolve(response);
                     }
                 }
