@@ -1,3 +1,3 @@
-export default interface ValidatorRuleCallable {
+export default interface IValidatorRuleCallable {
     (value: string);
 }

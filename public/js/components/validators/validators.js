@@ -5,7 +5,7 @@ define(["require", "exports"], function (require, exports) {
         function Validators() {
         }
         Validators.required = function (value) {
-            return typeof value != null && value != '' && value != undefined;
+            return typeof value != null && value !== "" && value !== undefined;
         };
         return Validators;
     }());
