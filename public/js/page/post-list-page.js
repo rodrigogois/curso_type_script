@@ -21,7 +21,8 @@ define(["require", "exports", "../http/post-http", "../components/post-table"], 
         return PostListPage;
     }());
     var postHttp = new post_http_1.default();
-    var postTable = new post_table_1.default('#my-table', ['title', 'body']);
+    var postTable = new post_table_1.default("#my-table", ["title", "body"]);
+    // tslint:disable-next-line:no-unused-expression
     new PostListPage(postHttp, postTable);
 });
 //# sourceMappingURL=post-list-page.js.map
